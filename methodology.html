@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Methodology -- Ian Schuepbach</title>
+  <meta name="description" content="Ian Schuepbach's spec-driven, model-tiered methodology for building AI systems: the spec as the durable artifact, cheap models hosting, expensive models thinking, cold verification gates.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%23b4530a'/%3E%3Ctext x='8' y='12' font-size='10' font-family='monospace' fill='white' text-anchor='middle'%3Ei%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="crumb"><a href="index.html">&larr; ian.schuepbach.work</a></nav>
+
+  <article>
+    <h1>Spec-driven, model-tiered AI development</h1>
+    <p class="lede">
+      How I get reliable output from unreliable components: treat the spec as the
+      durable artifact, put cheap models in charge of process and expensive models
+      in charge of judgment, and never let a builder grade its own work.
+    </p>
+
+    <h2>The spec is the durable artifact</h2>
+    <p>
+      In agentic development, code is cheap to regenerate and conversations
+      evaporate. What survives -- what is worth an expensive model's time to write
+      and a human's time to review -- is the spec. I write specs the way a PM
+      writes requirements: the problem, the constraints, the acceptance criteria,
+      and the tunable surface (anything a human might want to change later lives in
+      config from version one, never as a retrofit).
+    </p>
+    <p>
+      A good spec makes the implementing model interchangeable. When a build goes
+      sideways, I do not patch the conversation; I fix the spec and regenerate.
+      Big refactors get a fresh spec rather than a maintained pile of amendments --
+      superseding beats archaeology.
+    </p>
+
+    <h2>Cheap models host, expensive models think</h2>
+    <p>
+      Most of an agentic workflow is not thinking. It is dispatching: watch for a
+      trigger, launch a worker, collect a result, post a status. I run that layer
+      on small, cheap models with mechanical instructions -- string triggers and
+      fixed verbs, no judgment calls. Judgment is concentrated at checkpoints,
+      where a frontier model reviews a spec, audits a diff, or makes a taste call.
+    </p>
+    <ul>
+      <li><strong>Host tier</strong> -- small models run loops, route messages, and
+        follow checklists. If a step needs discretion, the design is wrong.</li>
+      <li><strong>Build tier</strong> -- mid-size models implement against the spec.
+        They are fast, cheap, and honest about being replaceable.</li>
+      <li><strong>Judgment tier</strong> -- the expensive model writes the spec,
+        reviews the result, and owns the hard calls. It shows up briefly and
+        leaves artifacts behind.</li>
+    </ul>
+    <p>
+      This is a budgeting discipline as much as an engineering one: frontier-model
+      tokens go where they change the outcome, not where a while-loop would do.
+    </p>
+
+    <h2>Cold verification gates</h2>
+    <p>
+      A model that just built something is the least trustworthy judge of it. So
+      verification runs cold: a fresh context, a different model or tool, no access
+      to the builder's rationalizations. Clone the repo and build it. Curl the
+      endpoint. Run the evals. The gate either passes on observable behavior or it
+      fails -- prose explanations are not evidence.
+    </p>
+    <p>
+      The same principle covers humans: anything destructive, outward-facing, or
+      money-spending stops at a human-in-the-loop approval gate, by architecture
+      rather than by convention. Guardrails you have to remember are not
+      guardrails.
+    </p>
+
+    <h2>A working public example</h2>
+    <p>
+      <a href="https://github.com/Sh-ui/underthink">underthink</a>, a Claude Code
+      plugin, is the small public end of this methodology -- built spec-first, with
+      the model-tiering philosophy applied to the tooling itself. The larger
+      private example is the
+      <a href="agentic-network.html">six-machine home agentic network</a>, where
+      the same tiers and gates govern a fleet that non-technical people rely on
+      daily.
+    </p>
+
+    <h2>What this looks like in practice</h2>
+    <table>
+      <tr><th>Phase</th><th>Who does it</th><th>Artifact</th></tr>
+      <tr><td>Frame the problem</td><td>Human + frontier model</td><td>Spec with acceptance criteria</td></tr>
+      <tr><td>Implement</td><td>Mid-tier models, in parallel lanes</td><td>Code, config surface, tests</td></tr>
+      <tr><td>Verify</td><td>Cold context: fresh model, real commands</td><td>Pass/fail evidence, not prose</td></tr>
+      <tr><td>Approve</td><td>Human, at the gate</td><td>The decision, logged</td></tr>
+    </table>
+    <p>
+      The pattern scales down to a one-file utility and up to a multi-machine
+      agentic system. The constant is that every layer produces something
+      inspectable -- a spec, a diff, a gate result -- so trust accumulates in
+      artifacts instead of vibes.
+    </p>
+  </article>
+
+  <footer class="site-foot">
+    <p><a href="https://github.com/Sh-ui">github.com/Sh-ui</a></p>
+  </footer>
+
+</div>
+</body>
+</html>
