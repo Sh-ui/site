@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>my mom&#x27;s budget is a markdown file -- Ian Schuepbach</title>
+  <meta name="theme-color" content="#faf7f2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#181410" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%2306798f'/%3E%3Ctext x='8' y='12' font-size='10' font-family='monospace' fill='white' text-anchor='middle'%3Ei%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Figtree:ital,wght@0,300..900;1,300..900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip" href="#main">skip to content</a>
+<div class="wrap">
+  <header class="topbar">
+    <a class="home" href="../index.html">ian.schuepbach.work</a>
+    <nav>
+      <a href="../agentic-network.html">agentic-network</a>
+      <a href="../methodology.html">methodology</a>
+      <a href="../writing/index.html" aria-current="page">writing</a>
+      <a href="https://github.com/Sh-ui">github</a>
+    </nav>
+  </header>
+  <main id="main">
+  <article>
+    <header class="article-head">
+      <span class="bgicon bgicon-file" style="top:16rem;right:-2rem;transform:rotate(8deg)"></span><span class="bgicon bgicon-grid bgicon-t" style="top:70rem;left:-4rem;transform:rotate(-6deg)"></span><h1>my mom&#x27;s budget is a markdown file<span class="caret" aria-hidden="true"></span></h1>
+    </header>
+    <p>My mom does her budget on a spinning wheel. Glass cards, a dial of categories, and when she taps something, the change lands as a plain line of text in a file called the-numbers.md in her notes vault. The wheel renders itself from whatever is in that file and writes her taps back into it. She works the wheel, not the file -- the markdown underneath isn&#x27;t something she deals with. And if the wheel disappeared tomorrow, her budget would still be sitting there, readable, in a format that will open in 2050.</p>
+    <p>Nobody designed that interface in Figma. It exists because her whole laptop got wrapped around her notes, with a contract I wrote for how its pages are allowed to behave.</p>
+    <h2><span class="h2-ix">01</span>the setup</h2>
+    <p>My mom&#x27;s laptop is wrapped into a pseudo-OS around an Obsidian vault. Her front door is a single HTML page: one-line header, a clock, a morning brief that&#x27;s just a rendered markdown file, a jot box that appends whatever she types into her daily note, a daily tip pulled from a tips.md file with about 40 tips in it, and so forth. Every piece of working data on that page lives in vault files. The page itself is disposable -- I can throw it away and have an agent build a better one, and nothing she cares about is at risk, because the page never held anything... it just showed it.</p>
+    <p>The rule I ended up writing down: <span class="hl-t">files stay the substrate, surfaces multiply</span>.</p>
+    <p>There&#x27;s a trust angle here that took me a while to say out loud. If she&#x27;s going to rely on these pages, they can&#x27;t be baked exports. They have to be live, and she has to be able to trust that they always will be -- a page you have to worry about is a page you quietly stop using. So there&#x27;s an actual contract: the page reads on open and on return, writes go through one narrow protocol with a hash check so a page never silently overwrites what it didn&#x27;t read, and polling loops are banned outright (one 20-second poll loop once wedged her sync client for about 36 hours, which is how that became law).</p>
+    <div class="orn" aria-hidden="true"><i></i><i></i><i></i></div>
+    <h2><span class="h2-ix">02</span>headings are the schema</h2>
+    <p>The same pattern runs my kitchen. We cook for a household of 6-8, family-style -- a staple grain plus shared dishes, Sunday batch prep, three roles in the kitchen. The whole week&#x27;s plan is one markdown file, FOOD-OF-THE-WEEK.md, and <span class="sq-c">the heading levels are the schema</span>. An H2 is a meal. Its workload badge rides in an H5, and whoever&#x27;s playing sous chef that night gets their briefing from the H6 underneath. H4 fields become grouped info cards, H3 sections become color-coded instruction blocks for each phase of the night. A position-based parser reads it, Astro renders it, and git push deploys a full site -- grocery lists with checkboxes that persist per week, printable recipes, archive permalinks -- live in 2-3 minutes.</p>
+    <p><span class="uc-t">I write a text file. My family gets a website.</span> The repo has 351 commits at this point, dinner actually runs on this thing.</p>
+    <p>Once you&#x27;ve done this twice, you notice the same shape everywhere. My mom worked through a 43-question budget worksheet as an interactive page, and her answers materialized as a markdown file (worksheets get put away when they&#x27;re full). The page was temporary, the file is what she keeps. Most software is built the other way around -- <span class="sq-t">the interface is permanent and your data is trapped inside it</span>.</p>
+    <div class="orn" aria-hidden="true"><i></i><i></i><i></i></div>
+    <h2><span class="h2-ix">03</span>the document answers back</h2>
+    <p>The newest version of this goes further. In our vault there&#x27;s a file format where you type @handle at an agent inside a plain markdown document, and <span class="hl-c">the answer streams into the document at your caret</span>, paced like a collaborator typing, 34 characters a second. The file stays pure markdown the whole time -- an agent reading it needs no special parser, and neither do you. I shipped a small public distillation of this, mention-watcher: a 193-line daemon that makes any markdown file a conversation surface. Type @claude in your notes and the answer arrives in place.</p>
+    <p>So a file can be plain markdown, or markdown with some live blocks in it, or the source of a whole rendered site, and it takes on as much UI as it needs -- nobody picks a format upfront. The plumbing in the middle is where all the time went, honestly: read-on-open, the write protocol, the hash check, and so forth.</p>
+    <h2><span class="h2-ix">04</span>what a frontend is</h2>
+    <p>A frontend is a view an agent can mint, on demand, from a substrate you own -- and the substrate is plain text. Treating the interface as the precious hand-built thing made sense when humans had to build every screen. When a screen costs one overnight agent run against a contract, you stop treating screens as precious. You keep the file.</p>
+    <p>I keep coming back to a dial-up analogy. Twenty years from now I think I&#x27;ll be saying: when I was your age we had APPS -- you went to a store, downloaded Gmail, had a password. And some kid will look at me sideways, because from where they sit, software was always just a thing that showed up around whatever you were doing. Everybody makes their own. Like my mom does with her budget wheel, like my dad does with his schedule. I don&#x27;t know exactly what the tooling looks like when everyone lives this way... my house already does, so I guess we&#x27;re the beta.</p>
+  </article>
+  </main>
+  <footer class="site-foot">
+    <p class="foot"><a href="https://github.com/Sh-ui">github.com/Sh-ui</a> &middot; <a href="https://linkedin.com/in/ian-schuepbach">linkedin</a></p>
+  </footer>
+</div>
+</body>
+</html>

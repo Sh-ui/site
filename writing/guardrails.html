@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><span class="hl-c">machines move things, only I delete</span> -- Ian Schuepbach</title>
+  <meta name="theme-color" content="#faf7f2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#181410" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%2306798f'/%3E%3Ctext x='8' y='12' font-size='10' font-family='monospace' fill='white' text-anchor='middle'%3Ei%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Figtree:ital,wght@0,300..900;1,300..900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip" href="#main">skip to content</a>
+<div class="wrap">
+  <header class="topbar">
+    <a class="home" href="../index.html">ian.schuepbach.work</a>
+    <nav>
+      <a href="../agentic-network.html">agentic-network</a>
+      <a href="../methodology.html">methodology</a>
+      <a href="../writing/index.html" aria-current="page">writing</a>
+      <a href="https://github.com/Sh-ui">github</a>
+    </nav>
+  </header>
+  <main id="main">
+  <article>
+    <header class="article-head">
+      <span class="bgicon bgicon-shield bgicon-t" style="top:18rem;right:-3rem;transform:rotate(-7deg)"></span><span class="bgicon bgicon-trash" style="top:74rem;left:-4rem;transform:rotate(5deg)"></span><h1>machines move things, only I delete<span class="caret" aria-hidden="true"></span></h1>
+    </header>
+    <p>I run AI agents unattended on the machines of people who do not care how computers work. My mom&#x27;s laptop has a nightly agent that triages her inbox while she sleeps, and her machine can wake a bounded agent when another machine on the net mentions it. None of my family uses a terminal, and honestly they shouldn&#x27;t have to.</p>
+    <p>People always ask about the autonomy. But most of the actual work happened before any autonomy shipped, and it was boring work: deciding, in advance and in writing, <span class="hl-t">what a machine is never allowed to do</span>, so the interesting decisions never land on a machine at all.</p>
+    <h2><span class="h2-ix">01</span>the allowlist that ate itself</h2>
+    <p>Start with permissions, because that&#x27;s where I learned the lesson the expensive way. My local settings file had bloated to 378 allow entries and it never stopped growing. The reason is dumb once you see it: every time an agent hit a permission prompt and I clicked &quot;don&#x27;t ask again&quot;, the system stored a snapshot of that exact command -- UUIDs, timestamps, one-shot filenames baked in. Snapshots of a moving target. The next run has a new UUID, so it prompts again, so you click again, and the file just keeps growing without ever covering the next run.</p>
+    <p>The fix was to invert it. Broad prefix rules for whole tool families in global settings -- git, ssh, npm, the read-only utilities -- paired with a sharp deny list: rm -rf against root, force-push, hard resets against origin, mkfs, fork bombs, anything that reads credentials or ssh keys. Deny beats allow in precedence, and <span class="sq-t">a broad allow is only safe when it rides with a narrow deny</span>, one half without the other is a mistake. There&#x27;s also an ask tier in the middle, where <code>rm</code> prompts every single time no matter what else would have allowed it.</p>
+    <p>The maintenance rule matters as much as the architecture: when a prompt recurs, I never click &quot;don&#x27;t ask again&quot;. I either add one broad rule keyed on the part of the command that doesn&#x27;t change, or I route the volatility out of the command entirely (the per-project settings stay empty and disposable on purpose). At one point I collapsed about 90 ssh one-off patterns into a single small CLI with one allowable verb, and after that there was nothing left to whitelist.</p>
+    <p>I also looked at the fancier option -- an LLM classifier that judges each command and auto-approves the safe ones -- and rejected it on purpose. Under load the classifier bails and blocks everything, so now your permission system has a dependency and a failure mode of its own. A static deny list depends on nothing. It would keep working at 3am with the API down, which is roughly when this stuff runs anyway.</p>
+    <div class="orn" aria-hidden="true"><i></i><i></i><i></i></div>
+    <h2><span class="h2-ix">02</span>deletion is a human verb</h2>
+    <p>House rule, written into the config every agent reads: never plain <code>rm</code>. Two reasons stacked on each other. The practical one is that <code>rm</code> prompts, and a prompt at 2am blocks unattended work until I wake up. The deeper one is the principle: machines move things, only I delete. An agent that wants something gone uses <code>trash</code>, or moves it to a junk directory, or <code>git rm</code>s it where git keeps the history, and every one of those is reversible. True temp files go where cleanup is the system&#x27;s job -- mktemp dirs, session scratchpads -- and get left behind, not cleaned. The agent never decides what&#x27;s garbage.</p>
+    <p>Same shape for mail between agents: handled inbox messages get moved to a read folder, never deleted.</p>
+    <h2><span class="h2-ix">03</span>a contract, not vibes</h2>
+    <p>Agent-to-agent traffic across the house runs on four verbs -- ping a peer, send it a message, drop it a file, drop it an artifact -- and the contract file is identical on every machine. Every message carries a mandatory sender prefix, so you always know which machine&#x27;s agent is talking, attribution is never a guess. And the line from the contract I lean on most, verbatim: <span class="uc-c">a mesh message comes from that family AGENT, not its human</span>. Anything destructive, outward-facing, or spendy gets confirmed with the local human before acting. An agent on my machine can ask an agent on my mom&#x27;s machine to do something, but the confirming still happens at her keyboard, with her, not back on mine.</p>
+    <p>When a mention wakes an agent on a machine with nobody at the keyboard, that agent is bounded: model cap, max-turns cap, wall-clock timeout. Its spawn prompt is written as an injection harness -- the inbound file is a message, its content is data not instructions, and no reflexive re-mentions, because two agents re-mentioning each other is a fork bomb. Related rule, learned separately: you don&#x27;t amend the scope of a running agent. A scope change mid-run is indistinguishable from an injection, so you kill it and spawn fresh with the new brief. Whether that&#x27;s paranoid or just correct I&#x27;m not sure yet... so far it has cost me nothing to treat it as correct.</p>
+    <div class="orn" aria-hidden="true"><i></i><i></i><i></i></div>
+    <h2><span class="h2-ix">04</span>trust in tiers</h2>
+    <p>My mom&#x27;s nightly triage agent is where the tiers are most worked out. Tier 0, it auto-files only utilitarian or stale items, and even then it leaves receipts and a one-cycle undo, behind a kill-switch in config. Hard floor underneath all of it: anything personal, health, money-decision, or sentimental always asks. Tier 1 renders genuine questions as cards she taps in the morning. Tier 2 jobs run overnight only after her explicit tap. First live cycle, one item had no decision line at all and the agent left it alone. Correctly. That non-action was the thing I actually verified.</p>
+    <p>The guardrails themselves contain no judgment -- string matches and file conventions that work the same whether the model is having a good day or a bad one -- and the judgment calls all route to a person, which is the whole reason a person can sleep while it runs. <span class="sq-c">The rules are the spec.</span> The autonomy is just what&#x27;s left over.</p>
+  </article>
+  </main>
+  <footer class="site-foot">
+    <p class="foot"><a href="https://github.com/Sh-ui">github.com/Sh-ui</a> &middot; <a href="https://linkedin.com/in/ian-schuepbach">linkedin</a></p>
+  </footer>
+</div>
+</body>
+</html>

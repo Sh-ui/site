@@ -5,131 +5,272 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ian Schuepbach -- PM/BA who builds agentic systems</title>
   <meta name="description" content="Ian Schuepbach: product manager and business analyst in Jacksonville, FL who designs and ships agentic AI systems with guardrails-first architecture.">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%23b4530a'/%3E%3Ctext x='8' y='12' font-size='10' font-family='monospace' fill='white' text-anchor='middle'%3Ei%3C/text%3E%3C/svg%3E">
+  <meta name="theme-color" content="#faf7f2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#181410" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%2306798f'/%3E%3Ctext x='8' y='12' font-size='10' font-family='monospace' fill='white' text-anchor='middle'%3Ei%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Figtree:ital,wght@0,300..900;1,300..900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<a class="skip" href="#main">skip to content</a>
 <div class="wrap">
 
-  <header class="site-head">
-    <h1>Ian Schuepbach</h1>
-    <p class="tagline">PM/BA who builds agentic systems.</p>
-    <p class="meta">
-      Jacksonville, FL &middot;
-      <a href="https://github.com/Sh-ui">github.com/Sh-ui</a>
-    </p>
+  <header class="topbar">
+    <a class="home" href="index.html">ian.schuepbach.work</a>
+    <nav>
+      <a href="agentic-network.html">agentic-network</a>
+      <a href="methodology.html">methodology</a>
+      <a href="writing/index.html">writing</a>
+      <a href="https://github.com/Sh-ui">github</a>
+    </nav>
   </header>
 
-  <main>
+  <div class="hero">
+    <h1>Ian Schuepbach<span class="caret" aria-hidden="true"></span></h1>
+    <p class="tagline">PM/BA who builds agentic systems.</p>
+    <p class="sub">Spec-driven. Guardrail-obsessed. Shipping agents that real,
+      non-technical people rely on every day.</p>
+    <p class="meta">
+      Jacksonville, FL &middot;
+      <a href="https://github.com/Sh-ui">github.com/Sh-ui</a> &middot;
+      <a href="https://linkedin.com/in/ian-schuepbach">linkedin</a>
+    </p>
+    <p class="creds" aria-label="certifications">
+      <span class="cred cred-csm"><i aria-hidden="true"></i>Certified ScrumMaster<small>Scrum Alliance</small></span>
+      <span class="cred cred-lss"><i aria-hidden="true"></i>Lean Six Sigma<small>Yellow Belt</small></span>
+    </p>
+  </div>
 
-    <section id="case-studies">
-      <h2>Case studies</h2>
+  <main id="main">
 
-      <article class="case">
-        <h3><a href="agentic-network.html">A six-machine home agentic network</a></h3>
-        <p>
-          I designed and operate a guardrails-first network of AI agents across six
-          machines, used daily by non-technical family members. Allowlist/deny
-          permission architecture, human-approval gates for anything destructive or
-          outward-facing, an offline-queued message hub, wake-on-mention agents, and
-          self-built MCP servers -- including a from-scratch OAuth 2.1 remote-MCP
-          stack (RFC 8414/9728, PKCE).
-        </p>
-        <ul class="stats">
-          <li><span class="num">6</span><span class="label">machines, one governed fleet</span></li>
-          <li><span class="num">Daily</span><span class="label">real use by non-technical users</span></li>
-          <li><span class="num">Human-gated</span><span class="label">destructive, outward-facing, and spend actions</span></li>
-        </ul>
-        <p class="links">
-          <a href="agentic-network.html">Read the case study &rarr;</a>
-        </p>
-      </article>
+    <section class="sec" id="case-studies">
+      <span class="kicker">Case studies</span>
+      <div class="sec-body">
 
-      <article class="case">
-        <h3>Pharmacy-ops master-list optimization</h3>
-        <p>
-          Rebuilt a pharmacy operations quoting workflow around a validated master
-          list: mapped the process, found where errors entered, and redesigned the
-          data path so the fast way became the accurate way.
-        </p>
-        <ul class="stats">
-          <li><span class="num">5 min &rarr; 1 min</span><span class="label">quote turnaround</span></li>
-          <li><span class="num">12% &rarr; 1%</span><span class="label">error rate</span></li>
-          <li><span class="num">+35%</span><span class="label">team capacity</span></li>
-        </ul>
-      </article>
+        <article class="case">
+          <p class="stamp stamp-coffee" aria-hidden="true">Daily use<small>six machines</small></p>
+          <span class="case-ix">01</span>
+          <h3><a href="agentic-network.html">A six-machine home agentic network</a></h3>
+          <p>
+            I designed and operate a guardrails-first network of AI agents across six
+            machines, used daily by non-technical family members. Allowlist/deny
+            permission architecture, human-approval gates for anything destructive or
+            outward-facing, an offline-queued message hub, wake-on-mention agents, and
+            self-built MCP servers -- including a from-scratch OAuth 2.1 remote-MCP
+            stack (RFC 8414/9728, PKCE).
+          </p>
+          <ul class="stats">
+            <li><span class="k">machines in one governed fleet</span><span class="leader" aria-hidden="true"></span><span class="v">6</span></li>
+            <li><span class="k">real use by non-technical users</span><span class="leader" aria-hidden="true"></span><span class="v">daily</span></li>
+            <li><span class="k">destructive, outward-facing, and spend actions</span><span class="leader" aria-hidden="true"></span><span class="v">human-gated</span></li>
+          </ul>
+          <p class="links">
+            <a href="agentic-network.html">read the case study -&gt;</a>
+          </p>
+        </article>
 
-      <article class="case">
-        <h3>food-of-the-week</h3>
-        <p>
-          A live meal-planning product with real weekly users. An agent-in-the-loop
-          planning flow mines an archive of past weeks, proposes the week's meals,
-          and a human dials them in -- the agent drafts, the family decides.
-        </p>
-        <ul class="stats">
-          <li><span class="num">Live</span><span class="label">in production, every week</span></li>
-          <li><span class="num">Agent-in-the-loop</span><span class="label">drafts proposed, humans approve</span></li>
-        </ul>
-        <p class="links">
-          <a href="https://food.schuepbach.work/">food.schuepbach.work</a>
-          <a href="https://github.com/Sh-ui/food-of-the-week">source</a>
-        </p>
-      </article>
+        <article class="case">
+          <p class="stamp" aria-hidden="true">Shipped<small>measured results</small></p>
+          <span class="case-ix">02</span>
+          <h3>Pharmacy-ops master-list optimization</h3>
+          <p>
+            Rebuilt a pharmacy operations quoting workflow around a validated master
+            list: mapped the process, found where errors entered, and redesigned the
+            data path so the fast way became the accurate way.
+          </p>
+          <ul class="stats stats-plain">
+            <li><span class="k">quote turnaround</span><span class="leader" aria-hidden="true"></span><span class="v">5 min -&gt; 1 min</span></li>
+            <li><span class="k">error rate</span><span class="leader" aria-hidden="true"></span><span class="v">12% -&gt; 1%</span></li>
+            <li><span class="k">team capacity</span><span class="leader" aria-hidden="true"></span><span class="v">+35%</span></li>
+          </ul>
+        </article>
+
+        <article class="case case-fotw">
+          <p class="stamp" aria-hidden="true">Live<small>in production</small></p>
+          <span class="case-ix">03</span>
+          <h3>food-of-the-week</h3>
+          <p>
+            A live meal-planning product with real weekly users. An agent-in-the-loop
+            planning flow mines an archive of past weeks, proposes the week's meals,
+            and a human dials them in -- the agent drafts, the family decides.
+          </p>
+          <ul class="stats">
+            <li><span class="k">in production, every week</span><span class="leader" aria-hidden="true"></span><span class="v">live</span></li>
+            <li><span class="k">drafts proposed, humans approve</span><span class="leader" aria-hidden="true"></span><span class="v">agent-in-the-loop</span></li>
+          </ul>
+          <p class="links">
+            <a href="https://food.schuepbach.work/">food.schuepbach.work</a>
+            <a href="https://github.com/Sh-ui/food-of-the-week">source</a>
+          </p>
+        </article>
+
+      </div>
     </section>
 
-    <section id="methodology-link">
-      <h2>How I work</h2>
-      <p>
-        Spec-driven, model-tiered AI development: the spec is the durable artifact,
-        cheap models host, expensive models think, and cold verification gates keep
-        everyone honest. <a href="methodology.html">Read the methodology &rarr;</a>
-      </p>
+    <section class="band" id="methodology-link">
+      <div class="band-grid">
+        <div>
+          <span class="kicker">How I work</span>
+          <p class="band-quote">
+            Spec-driven, model-tiered AI development:
+            <em class="mk">the spec is the durable artifact</em>,
+            cheap models host, expensive models think, and agents build against
+            explicit verification criteria -- an independent check decides what
+            counts as done.
+          </p>
+          <p class="band-sub">The same systems render living interfaces straight
+            from plain-text backends: markdown in, UI out.</p>
+          <p class="links">
+            <a href="methodology.html">read the methodology -&gt;</a>
+          </p>
+        </div>
+        <div class="md2ui" aria-hidden="true">
+          <div class="md">
+            <span></span><span class="s"></span><span></span>
+            <span class="s"></span><span></span><span class="s"></span>
+          </div>
+          <div class="md2ui-arrow">-&gt;</div>
+          <div class="bento">
+            <i class="b1"></i><i class="b2"></i><i class="b3"></i><i class="b4"></i>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section id="public-work">
-      <h2>Public work</h2>
-      <ul class="grid">
-        <li><a href="https://github.com/Sh-ui/underthink">
-          <span class="name">underthink</span>
-          <span class="desc">Claude Code plugin</span>
-        </a></li>
-        <li><a href="https://github.com/Sh-ui/ghab">
-          <span class="name">ghab</span>
-          <span class="desc">GitHub TUI</span>
-        </a></li>
-        <li><a href="https://github.com/Sh-ui/pigeon">
-          <span class="name">pigeon</span>
-          <span class="desc">Google Messages TUI</span>
-        </a></li>
-        <li><a href="https://github.com/Sh-ui/isovox">
-          <span class="name">isovox</span>
-          <span class="desc">terminal voxel game engine</span>
-        </a></li>
-        <li><a href="https://github.com/Sh-ui/PackWeasel">
-          <span class="name">PackWeasel</span>
-          <span class="desc">Python packaging CLI</span>
-        </a></li>
-        <li><a href="https://github.com/Sh-ui/crt">
-          <span class="name">crt</span>
-          <span class="desc">CRT filter for the uConsole</span>
-        </a></li>
-        <li><a href="https://github.com/Sh-ui/tehom">
-          <span class="name">tehom</span>
-          <span class="desc">generative canvas library</span>
-        </a></li>
-        <li><a href="https://github.com/Sh-ui/mention-watcher">
-          <span class="name">mention-watcher</span>
-          <span class="desc">agents answer @mentions inside markdown</span>
-        </a></li>
-      </ul>
+    <section class="sec" id="public-work">
+      <span class="kicker">Public work</span>
+      <div class="sec-body">
+        <ol class="cards">
+          <li><a class="card card-shot" href="https://github.com/Sh-ui/mention-watcher">
+            <img class="shot" src="assets/mention-watcher.jpg" alt="" loading="lazy" width="560" height="315">
+            <span class="card-top"><span class="ix">01</span><span class="chip chip-agents">agents</span></span>
+            <span class="name">mention-watcher</span>
+            <span class="desc">type @claude in any markdown note and the answer streams into the file</span>
+            <span class="go" aria-hidden="true">-&gt;</span>
+            <span class="stamp stamp-coffee" aria-hidden="true">In production</span>
+          </a></li>
+          <li><a class="card" href="https://github.com/Sh-ui/underthink">
+            <span class="card-top"><span class="ix">02</span><span class="chip chip-plugin">plugin</span></span>
+            <span class="name">underthink</span>
+            <span class="desc">Claude Code plugin: cheap models host, expensive models think</span>
+            <span class="go" aria-hidden="true">-&gt;</span>
+          </a></li>
+          <li><a class="card card-shot" href="https://github.com/Sh-ui/ghab">
+            <img class="shot" src="assets/ghab.jpg" alt="" loading="lazy" width="560" height="315">
+            <span class="card-top"><span class="ix">03</span><span class="chip chip-tui">TUI</span></span>
+            <span class="name">ghab</span>
+            <span class="desc">browse GitHub like the website, in your terminal</span>
+            <span class="go" aria-hidden="true">-&gt;</span>
+          </a></li>
+          <li><a class="card card-shot" href="https://github.com/Sh-ui/pigeon">
+            <img class="shot" src="assets/pigeon.jpg" alt="" loading="lazy" width="560" height="315">
+            <span class="card-top"><span class="ix">04</span><span class="chip chip-tui">TUI</span></span>
+            <span class="name">pigeon</span>
+            <span class="desc">Google Messages, full-featured, in the terminal</span>
+            <span class="go" aria-hidden="true">-&gt;</span>
+          </a></li>
+          <li><a class="card" href="https://github.com/Sh-ui/PackWeasel">
+            <span class="card-top"><span class="ix">05</span><span class="chip chip-cli">CLI</span></span>
+            <span class="name">PackWeasel</span>
+            <span class="desc">portable Python apps with nothing hidden in a frozen binary</span>
+            <span class="go" aria-hidden="true">-&gt;</span>
+          </a></li>
+          <li><a class="card" href="https://github.com/Sh-ui/crt">
+            <span class="card-top"><span class="ix">06</span><span class="chip chip-cli">tool</span></span>
+            <span class="name">crt</span>
+            <span class="desc">a whole-desktop CRT filter for the uConsole</span>
+            <span class="go" aria-hidden="true">-&gt;</span>
+          </a></li>
+          <li><a class="card card-shot" href="https://github.com/Sh-ui/tehom">
+            <img class="shot" src="assets/tehom.jpg" alt="" loading="lazy" width="560" height="315">
+            <span class="card-top"><span class="ix">07</span><span class="chip chip-lib">library</span></span>
+            <span class="name">tehom</span>
+            <span class="desc">one continuous generative substance on a canvas</span>
+            <span class="go" aria-hidden="true">-&gt;</span>
+          </a></li>
+          <li><a class="card card-shot" href="https://github.com/Sh-ui/isovox">
+            <img class="shot" src="assets/isovox.jpg" alt="" loading="lazy" width="560" height="315">
+            <span class="card-top"><span class="ix">08</span><span class="chip chip-engine">engine</span></span>
+            <span class="name">isovox</span>
+            <span class="desc">isometric ASCII voxel games, live in the terminal</span>
+            <span class="go" aria-hidden="true">-&gt;</span>
+            <span class="stamp" aria-hidden="true">Playable</span>
+          </a></li>
+        </ol>
+        <p class="ledger-hint" hidden>keys: <kbd>j</kbd> / <kbd>k</kbd> move between cards, <kbd>enter</kbd> opens</p>
+      </div>
+    </section>
+
+    <section class="sec" id="through-line">
+      <span class="kicker">The through-line</span>
+      <div class="sec-body">
+        <p class="bigline-lead">
+          None of this was assigned. The network, the tools, the product with real
+          weekly users -- this page is just the slice of what I build that happened
+          to make it public. I'm always building something new, because building
+          is not just what I do for work.
+        </p>
+        <p class="bigline">it's what I do<span class="enddot" aria-hidden="true"></span></p>
+      </div>
     </section>
 
   </main>
 
   <footer class="site-foot">
-    <p><a href="https://github.com/Sh-ui">github.com/Sh-ui</a></p>
+    <p class="foot"><a href="https://github.com/Sh-ui">github.com/Sh-ui</a> &middot; <a href="https://linkedin.com/in/ian-schuepbach">linkedin</a></p>
   </footer>
 
 </div>
+
+<script>
+/* the cards take keys: j / k from anywhere, enter opens (each card is
+   a real link, the browser does that part).
+   no javascript? every card is still a plain anchor. nothing breaks. */
+(function () {
+  /* scroll reveal: sections arrive, criteria check themselves off */
+  document.documentElement.classList.add("js");
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("in-view"); io.unobserve(e.target); }
+    });
+  }, { rootMargin: "0px 0px -12% 0px" });
+  [].forEach.call(document.querySelectorAll(".sec, .band"), function (s) { io.observe(s); });
+
+  var rows = [].slice.call(document.querySelectorAll(".cards .card"));
+  if (!rows.length) return;
+  var hint = document.querySelector(".ledger-hint");
+  if (hint) hint.removeAttribute("hidden");
+
+  var i = -1;
+  function bar(n) {
+    rows.forEach(function (r) { r.classList.remove("sel"); });
+    i = (n + rows.length) % rows.length;
+    rows[i].classList.add("sel");
+    rows[i].focus();
+  }
+  rows.forEach(function (r, n) {
+    r.addEventListener("focus", function () {
+      rows.forEach(function (x) { x.classList.remove("sel"); });
+      i = n;
+      r.classList.add("sel");
+    });
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    var t = e.target;
+    if (t && /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)) return;
+    var inLedger = t && t.classList && t.classList.contains("card");
+    if (e.key === "j" || (inLedger && e.key === "ArrowDown")) {
+      e.preventDefault();
+      bar(i < 0 ? 0 : i + 1);
+    } else if (e.key === "k" || (inLedger && e.key === "ArrowUp")) {
+      e.preventDefault();
+      bar(i < 0 ? rows.length - 1 : i - 1);
+    }
+  });
+})();
+</script>
 </body>
 </html>

@@ -5,23 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Home agentic network -- Ian Schuepbach</title>
   <meta name="description" content="Case study: a guardrails-first agentic AI network across six home machines, designed for non-technical users, with allowlist/deny permissions and human approval gates.">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%23b4530a'/%3E%3Ctext x='8' y='12' font-size='10' font-family='monospace' fill='white' text-anchor='middle'%3Ei%3C/text%3E%3C/svg%3E">
+  <meta name="theme-color" content="#faf7f2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#181410" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%2306798f'/%3E%3Ctext x='8' y='12' font-size='10' font-family='monospace' fill='white' text-anchor='middle'%3Ei%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Figtree:ital,wght@0,300..900;1,300..900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<a class="skip" href="#main">skip to content</a>
 <div class="wrap">
 
-  <nav class="crumb"><a href="index.html">&larr; ian.schuepbach.work</a></nav>
+  <header class="topbar">
+    <a class="home" href="index.html">ian.schuepbach.work</a>
+    <nav>
+      <a href="agentic-network.html" aria-current="page">agentic-network</a>
+      <a href="methodology.html">methodology</a>
+      <a href="writing/index.html">writing</a>
+      <a href="https://github.com/Sh-ui">github</a>
+    </nav>
+  </header>
 
+  <main id="main">
   <article>
-    <h1>A six-machine home agentic network</h1>
-    <p class="lede">
-      A case study in shipping agentic AI to the hardest user base there is:
-      your own non-technical family, every day, with no tolerance for breakage
-      and no appetite for terminals.
-    </p>
 
-    <h2>Problem</h2>
+    <header class="article-head">
+      <h1>A six-machine home agentic network<span class="caret" aria-hidden="true"></span></h1>
+      <p class="lede">
+        A case study in shipping agentic AI to the hardest user base there is:
+        your own non-technical family, every day, with no tolerance for breakage
+        and no appetite for terminals.
+      </p>
+    </header>
+
+    <h2><span class="h2-ix">01</span>Problem</h2>
     <p>
       The household had real, recurring coordination work -- meal planning, notes
       and reminders, document wrangling, small automations -- and several family
@@ -31,7 +49,7 @@
       than bolted on after an incident.
     </p>
 
-    <h2>Constraints</h2>
+    <h2><span class="h2-ix">02</span>Constraints</h2>
     <ul>
       <li><strong>Non-technical users.</strong> Family members interact through
         things they already use -- notes, messages, simple web pages. No new apps
@@ -47,7 +65,7 @@
         path.</li>
     </ul>
 
-    <h2>Guardrails and approval design</h2>
+    <h2><span class="h2-ix">03</span>Guardrails and approval design</h2>
     <p>
       The permission model came first, before any agent got useful. Two layers do
       the work:
@@ -70,7 +88,7 @@
       configuration is refused by design.
     </p>
 
-    <h2>Architecture</h2>
+    <h2><span class="h2-ix">04</span>Architecture</h2>
     <ul>
       <li><strong>A message hub with offline-queued delivery.</strong> Agents on
         different machines exchange messages and files through a central hub;
@@ -91,7 +109,7 @@
         agent loads, so behavior is consistent across machines and sessions.</li>
     </ul>
 
-    <h2>Rollout</h2>
+    <h2><span class="h2-ix">05</span>Rollout</h2>
     <p>
       The fleet was brought up one machine at a time against a standard rig
       definition: same directory layout, same permission architecture, same
@@ -102,7 +120,7 @@
       one.
     </p>
 
-    <h2>Governance</h2>
+    <h2><span class="h2-ix">06</span>Governance</h2>
     <p>
       Standing rules are written down and versioned, not tribal. The permission
       architecture is reviewed when it causes friction rather than silently
@@ -112,7 +130,7 @@
       regressions treated as bugs.
     </p>
 
-    <h2>Outcome</h2>
+    <h2><span class="h2-ix">07</span>Outcome</h2>
     <p>
       The network is in daily real use. Non-technical family members get work done
       through agents without knowing or caring what a terminal is: weekly meal
@@ -130,9 +148,10 @@
       methodology</a> this fleet is built and governed with.</em>
     </p>
   </article>
+  </main>
 
   <footer class="site-foot">
-    <p><a href="https://github.com/Sh-ui">github.com/Sh-ui</a></p>
+    <p class="foot"><a href="https://github.com/Sh-ui">github.com/Sh-ui</a> &middot; <a href="https://linkedin.com/in/ian-schuepbach">linkedin</a></p>
   </footer>
 
 </div>

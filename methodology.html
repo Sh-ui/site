@@ -5,23 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Methodology -- Ian Schuepbach</title>
   <meta name="description" content="Ian Schuepbach's spec-driven, model-tiered methodology for building AI systems: the spec as the durable artifact, cheap models hosting, expensive models thinking, cold verification gates.">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%23b4530a'/%3E%3Ctext x='8' y='12' font-size='10' font-family='monospace' fill='white' text-anchor='middle'%3Ei%3C/text%3E%3C/svg%3E">
+  <meta name="theme-color" content="#faf7f2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#181410" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%2306798f'/%3E%3Ctext x='8' y='12' font-size='10' font-family='monospace' fill='white' text-anchor='middle'%3Ei%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Figtree:ital,wght@0,300..900;1,300..900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<a class="skip" href="#main">skip to content</a>
 <div class="wrap">
 
-  <nav class="crumb"><a href="index.html">&larr; ian.schuepbach.work</a></nav>
+  <header class="topbar">
+    <a class="home" href="index.html">ian.schuepbach.work</a>
+    <nav>
+      <a href="agentic-network.html">agentic-network</a>
+      <a href="methodology.html" aria-current="page">methodology</a>
+      <a href="writing/index.html">writing</a>
+      <a href="https://github.com/Sh-ui">github</a>
+    </nav>
+  </header>
 
+  <main id="main">
   <article>
-    <h1>Spec-driven, model-tiered AI development</h1>
-    <p class="lede">
-      How I get reliable output from unreliable components: treat the spec as the
-      durable artifact, put cheap models in charge of process and expensive models
-      in charge of judgment, and never let a builder grade its own work.
-    </p>
 
-    <h2>The spec is the durable artifact</h2>
+    <header class="article-head">
+      <h1>Spec-driven, model-tiered AI development<span class="caret" aria-hidden="true"></span></h1>
+      <p class="lede">
+        How I get reliable output from unreliable components: treat the spec as the
+        durable artifact, put cheap models in charge of process and expensive models
+        in charge of judgment, and never let a builder grade its own work.
+      </p>
+    </header>
+
+    <h2><span class="h2-ix">01</span>The spec is the durable artifact</h2>
     <p>
       In agentic development, code is cheap to regenerate and conversations
       evaporate. What survives -- what is worth an expensive model's time to write
@@ -37,7 +55,7 @@
       superseding beats archaeology.
     </p>
 
-    <h2>Cheap models host, expensive models think</h2>
+    <h2><span class="h2-ix">02</span>Cheap models host, expensive models think</h2>
     <p>
       Most of an agentic workflow is not thinking. It is dispatching: watch for a
       trigger, launch a worker, collect a result, post a status. I run that layer
@@ -59,7 +77,7 @@
       tokens go where they change the outcome, not where a while-loop would do.
     </p>
 
-    <h2>Cold verification gates</h2>
+    <h2><span class="h2-ix">03</span>Cold verification gates</h2>
     <p>
       A model that just built something is the least trustworthy judge of it. So
       verification runs cold: a fresh context, a different model or tool, no access
@@ -74,7 +92,7 @@
       guardrails.
     </p>
 
-    <h2>A working public example</h2>
+    <h2><span class="h2-ix">04</span>A working public example</h2>
     <p>
       <a href="https://github.com/Sh-ui/underthink">underthink</a>, a Claude Code
       plugin, is the small public end of this methodology -- built spec-first, with
@@ -85,14 +103,24 @@
       daily.
     </p>
 
-    <h2>What this looks like in practice</h2>
-    <table>
-      <tr><th>Phase</th><th>Who does it</th><th>Artifact</th></tr>
-      <tr><td>Frame the problem</td><td>Human + frontier model</td><td>Spec with acceptance criteria</td></tr>
-      <tr><td>Implement</td><td>Mid-tier models, in parallel lanes</td><td>Code, config surface, tests</td></tr>
-      <tr><td>Verify</td><td>Cold context: fresh model, real commands</td><td>Pass/fail evidence, not prose</td></tr>
-      <tr><td>Approve</td><td>Human, at the gate</td><td>The decision, logged</td></tr>
-    </table>
+    <h2><span class="h2-ix">05</span>On-demand frontends</h2>
+    <p>My mom runs her budget through a rendered page an agent built for her. Underneath it is a plain markdown file with her numbers in it, the page parses that file, draws the wheel, and writes her changes back into the same file through a narrow read/write protocol. She doesn&#x27;t open the markdown. She doesn&#x27;t need to. But if the page vanished tomorrow, nothing would be lost -- the file is the asset, and another page could be rendered over it by dinner.</p>
+    <p>That&#x27;s the whole idea. Durable substance lives in plain text that people and agents can both read, and interfaces are views rendered on top of it, cheap enough to produce that they&#x27;re cheap to throw away. The same trick covers her dashboard, a worksheet, a page a relative opens from a link on her phone, and so forth -- different faces, same files underneath.</p>
+    <p>This sounds like the &quot;generative UI&quot; demos going around, and the rendering half is the same trick. The difference is where the data lives. Generic generative UI generates the data model along with the pixels, so when you throw the interface away you throw the substance away with it, and now you can&#x27;t throw anything away, and you&#x27;re right back to an app holding your data. In my setup the rendered layer owns nothing. A 43-question interactive worksheet I shipped my mom exists to materialize its answers as a markdown file, once the file is full, the worksheet gets put away. The UI was scaffolding. The demos also tend to be screenshots. This is a household in production -- my mom&#x27;s daily tools have run this way since August, and she only ever touches the rendered faces.</p>
+    <p>The part that took actual engineering isn&#x27;t either end. Markdown is easy and web pages are easy, the plumbing between them is the part that fought back. A rendered view you rely on can&#x27;t be a baked export, because a stale dashboard teaches you to stop trusting it, and if you have to worry about whether it&#x27;s current you won&#x27;t use it, which defeats the whole point. So the pages read LIVE through one versioned protocol -- read, write with an expected hash so a page never silently overwrites what it didn&#x27;t read, append, list -- and the same unmodified page runs inside a note-taking app, on a phone, and on the public web, because the protocol has many answerers. The rules are written down: no polling loops (there&#x27;s a checker script, because I don&#x27;t trust myself on that one), snapshots allowed only as a paint-fast boot trick, honest timestamps on anything materialized.</p>
+    <p>Two smaller things fall out of this that I haven&#x27;t seen elsewhere, as far as I know. A link can live in a button label or a card footer and it indexes exactly like a link in prose, so generated UI gets backlinks. And the cost of generating an interface is an engineering variable like any other -- splitting the plumbing agents never write from the content they do takes the tokens spent per page from around 1750 to around 400.</p>
+    <p>When rendering a purpose-built view costs minutes of agent time instead of a sprint, &quot;app&quot; stops being the unit you maintain, the file and the protocol underneath it are. I think interfaces are headed that way generally. We&#x27;ll see.</p>
+
+    <h2><span class="h2-ix">06</span>What this looks like in practice</h2>
+    <div class="table-scroll">
+      <table>
+        <tr><th>Phase</th><th>Who does it</th><th>Artifact</th></tr>
+        <tr><td>Frame the problem</td><td>Human + frontier model</td><td>Spec with acceptance criteria</td></tr>
+        <tr><td>Implement</td><td>Mid-tier models, in parallel lanes</td><td>Code, config surface, tests</td></tr>
+        <tr><td>Verify</td><td>Cold context: fresh model, real commands</td><td>Pass/fail evidence, not prose</td></tr>
+        <tr><td>Approve</td><td>Human, at the gate</td><td>The decision, logged</td></tr>
+      </table>
+    </div>
     <p>
       The pattern scales down to a one-file utility and up to a multi-machine
       agentic system. The constant is that every layer produces something
@@ -100,9 +128,10 @@
       artifacts instead of vibes.
     </p>
   </article>
+  </main>
 
   <footer class="site-foot">
-    <p><a href="https://github.com/Sh-ui">github.com/Sh-ui</a></p>
+    <p class="foot"><a href="https://github.com/Sh-ui">github.com/Sh-ui</a> &middot; <a href="https://linkedin.com/in/ian-schuepbach">linkedin</a></p>
   </footer>
 
 </div>
