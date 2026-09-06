@@ -1064,3 +1064,17 @@ td:first-child { font-weight: 600; color: var(--ink); }
   .stats .v { font-size: 0.88rem; white-space: normal; }
   .topbar nav { gap: 1rem; }
 }
+
+/* article figures: a real screen capture, run through the device's own
+   CRT overlay (clockwork-crt, tube preset) so it reads as the handheld does */
+.fig { margin: 1.6rem 0 1.9rem; max-width: var(--measure); }
+.fig img {
+  display: block; width: 100%; height: auto;
+  border-radius: 6px; border: 1px solid var(--line);
+  box-shadow: var(--shadow-soft);
+}
+.fig figcaption {
+  margin-top: 0.55rem; font-family: var(--mono); font-size: 0.78rem;
+  color: var(--ink-faint); letter-spacing: 0.01em;
+}
+.fig figcaption b { color: var(--coffee-text); font-weight: 600; }
